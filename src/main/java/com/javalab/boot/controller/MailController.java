@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Main 컨트롤러
+ * Mail 컨트롤러
  */
 @Controller
 @RequiredArgsConstructor
