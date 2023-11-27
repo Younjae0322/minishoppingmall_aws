@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Main 컨트롤러
+ */
 @Controller
 @RequiredArgsConstructor
 public class MailController {
