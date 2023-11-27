@@ -21,6 +21,9 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Auth 컨트롤러
+ */
 @RequestMapping(value = "/user")
 @Controller
 @RequiredArgsConstructor
