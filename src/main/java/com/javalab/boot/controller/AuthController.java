@@ -32,7 +32,7 @@ public class AuthController {
     private final AuthService authService;
     private final PrincipalDetailService principalDetailService;
     private final PasswordEncoder passwordEncoder;
-    private final ItemService itemService;
+    
 
 
     @GetMapping(value = "/new")
