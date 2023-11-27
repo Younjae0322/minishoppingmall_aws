@@ -6,6 +6,7 @@ import com.javalab.boot.controller.auth.SignupDto;
 import com.javalab.boot.domain.user.User;
 import com.javalab.boot.dto.UserDto;
 import com.javalab.boot.service.AuthService;
+import com.javalab.boot.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +32,7 @@ public class AuthController {
     private final AuthService authService;
     private final PrincipalDetailService principalDetailService;
     private final PasswordEncoder passwordEncoder;
+    private final ItemService itemService;
 
 
     @GetMapping(value = "/new")
