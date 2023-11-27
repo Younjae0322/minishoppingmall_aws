@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+
+/*
+ 깃허브에서 주석 추가
+*/
+
 @Controller
 @RequiredArgsConstructor
 @Log4j2
