@@ -3319,13 +3319,13 @@ textarea.form-control-lg {
 }
 
 .btn-outline-success {
-  color: #BCFF66;
-  border-color: #BCFF66;
+  color: #4646CD;
+  border-color: #82EB5A;
 }
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #82EB5A;
-  border-color: #82EB5A;
+  background-color: #3CB371;
+  border-color: #3CB371;
 }
 .btn-check:focus + .btn-outline-success, .btn-outline-success:focus {
   box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.5);

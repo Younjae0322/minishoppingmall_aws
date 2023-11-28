@@ -73,7 +73,7 @@ public class ItemService {
     }
     // 특정 상품 수정
     public void itemModify(Item item, Long id, MultipartFile file)throws Exception{
-        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+        String projectPath = System.getProperty("user.dir") + "\\files\\";
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename();
         File saveFile = new File(projectPath,fileName);

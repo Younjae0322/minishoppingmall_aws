@@ -24,9 +24,7 @@ public class UserPageService {
     public UserDto findUserId(Integer id){
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-        log.info("user : " + user);
         UserDto userDto = UserDto.fromEntity(user);
-        log.info("userDto : " + userDto);
         return userDto;
     }
 
@@ -53,9 +51,14 @@ public class UserPageService {
         userRepository.save(tempUser);
     }
 
-    public void chargePoint(int id,int amount){
+    /**
+     * 잔액 충전 시 기존 금액 조회 후  + 충전 금액 만큼 증가해주는 메소드
+     * security 영역에 있는 로그인 객체 조회해서 초기화해줌.
+     */
+    public void chargePoint(int id,int amount, PrincipalDetails principalDetails){
         User user = userRepository.findById(id).get();
-        user.setMoney(amount);
+        user.setMoney(user.getMoney() + amount);
+        principalDetails.setUser(user);
         userRepository.save(user);
     }
 

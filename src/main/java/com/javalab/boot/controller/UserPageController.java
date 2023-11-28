@@ -218,11 +218,11 @@ public class UserPageController {
     @GetMapping("/user/charge/point")
     public String myCashPro(int amount, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         User user = userPageService.findUser(principalDetails.getUser().getId());
-        userPageService.chargePoint(user.getId(), amount);
+        userPageService.chargePoint(user.getId(), amount, principalDetails);
         return "redirect:/main";
     }
 
-    // 관리자 유전관리
+    // 관리자 유저관리
     @GetMapping("/user/{id}/admin")
     public String adminPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         User admin = userPageService.findUser(id);
@@ -238,14 +238,12 @@ public class UserPageController {
     }
 
 
-}
-
-/*    // 관리자유저 정보수정 처리
+    // 관리자유저 정보수정 처리
     @PostMapping("/user/change/{id}")
     public String userChange(@PathVariable("id") Integer id, User user){
         userPageService.userUpdate(id,user);
 
         return "redirect:/main";
     }
-}*/
+}
 

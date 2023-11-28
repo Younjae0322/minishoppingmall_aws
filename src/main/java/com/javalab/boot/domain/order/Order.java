@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "orders")
 @Entity
+
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

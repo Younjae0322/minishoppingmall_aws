@@ -1,23 +1,35 @@
 package com.javalab.boot.service;
 
+import com.javalab.boot.config.auth.PrincipalDetails;
 import com.javalab.boot.domain.cart_item.Cart_item;
+import com.javalab.boot.domain.cart_item.Cart_itemRepository;
+import com.javalab.boot.domain.item.Item;
 import com.javalab.boot.domain.order.Order;
 import com.javalab.boot.domain.order.OrderRepository;
+import com.javalab.boot.domain.order_item.Order_ItemRepository;
 import com.javalab.boot.domain.order_item.Order_item;
 import com.javalab.boot.domain.user.User;
+import com.javalab.boot.domain.user.UserRepository;
+import com.javalab.boot.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final Order_ItemRepository order_ItemRepository;
+    private final UserPageService userPageService;
 
     // 주문 생성
     public void createOrder(User user){
@@ -87,6 +99,43 @@ public class OrderService {
         return orderRepository.getTotalItemCountByDateRange(startDate, endDate);
     }
 
-    public void orderRefund(Integer id) {
+    @Transactional
+    public void orderRefund(Integer id, PrincipalDetails principalDetails) {
+        Optional<Order> orderOptional = orderRepository.findById(id);
+
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            order.setStatus("환불 완료");
+            orderRepository.save(order);
+
+            // 주문 항목들을 반복하면서 환불 처리
+            for (Order_item orderItem : order.getOrder_items()) {
+                Item item = orderItem.getItem();
+
+                User buyer = orderItem.getOrder().getUser();
+
+                int itemCount = orderItem.getCount();
+
+                int itemPrice = orderItem.getPrice();
+                int totalRefundAmount = itemCount * itemPrice;
+
+
+                // 판매자에게 환불된 돈을 차감하고, 구매자에게 환불된 돈을 추가
+                item.getUser().setMoney(item.getUser().getMoney() - totalRefundAmount);
+
+                buyer.setMoney(buyer.getMoney() + totalRefundAmount);
+
+                // 아이템의 stock과 팔린 갯수(count)을 복원
+                item.changeStock(itemCount);
+                item.setCount(item.getCount() - itemCount);
+            }
+            // 판매자의 정보를 업데이트
+            User seller = principalDetails.getUser();
+            userPageService.updatePrincipalDetails(seller.getId(), principalDetails);
+        } else {
+            // 주문이 존재하지 않을 때 처리
+            log.error("Order not found with id: " + id);
+        }
     }
 }
+

@@ -8,6 +8,7 @@ import com.javalab.boot.dto.UserDto;
 import com.javalab.boot.service.AuthService;
 import com.javalab.boot.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import java.util.Map;
 @RequestMapping(value = "/user")
 @Controller
 @RequiredArgsConstructor
+@Log4j2
 public class AuthController {
     private final AuthService authService;
     private final PrincipalDetailService principalDetailService;
@@ -66,6 +68,7 @@ public class AuthController {
 
     @PostMapping(value = "/newAdmin")
     public String adminNewUser(@Valid UserDto userDto, BindingResult bindingResult, Model model){
+        log.info("userDto : " + userDto);
 
         if(bindingResult.hasErrors()){
             return "adminUserForm";
@@ -73,6 +76,7 @@ public class AuthController {
 
         try {
             User user = User.createAdminUser(userDto, passwordEncoder);
+            log.info("user : " + user);
             principalDetailService.userCreate(user);
         } catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
