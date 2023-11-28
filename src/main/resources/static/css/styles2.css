@@ -35,7 +35,7 @@
   --bs-gray-900: #212529;
   --bs-primary: #0d6efd;
   --bs-secondary: #6c757d;
-  --bs-success: #198754;
+  --bs-success: #BCFF66;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc107;
   --bs-danger: #dc3545;
@@ -43,7 +43,7 @@
   --bs-dark: #212529;
   --bs-primary-rgb: 13, 110, 253;
   --bs-secondary-rgb: 108, 117, 125;
-  --bs-success-rgb: 25, 135, 84;
+  --bs-success-rgb: 60, 179, 113;
   --bs-info-rgb: 13, 202, 240;
   --bs-warning-rgb: 255, 193, 7;
   --bs-danger-rgb: 220, 53, 69;
@@ -3089,25 +3089,25 @@ textarea.form-control-lg {
 }
 
 .btn-success {
-  color: #fff;
-  background-color: #198754;
-  border-color: #198754;
+    color: #4646CD;
+    background-color: #82EB5A;
+    border-color: #82EB5A;
 }
 .btn-success:hover {
-  color: #fff;
-  background-color: #157347;
-  border-color: #146c43;
+    color: #fff;
+    background-color: #82EB5A;
+    border-color: #82EB5A;
 }
 .btn-check:focus + .btn-success, .btn-success:focus {
-  color: #fff;
-  background-color: #157347;
-  border-color: #146c43;
+  color: #4646CD;
+      background-color: #82EB5A;
+      border-color: #82EB5A;
   box-shadow: 0 0 0 0.25rem rgba(60, 153, 110, 0.5);
 }
 .btn-check:checked + .btn-success, .btn-check:active + .btn-success, .btn-success:active, .btn-success.active, .show > .btn-success.dropdown-toggle {
-  color: #fff;
-  background-color: #146c43;
-  border-color: #13653f;
+  color: #4646CD;
+      background-color: #82EB5A;
+      border-color: #82EB5A;
 }
 .btn-check:checked + .btn-success:focus, .btn-check:active + .btn-success:focus, .btn-success:active:focus, .btn-success.active:focus, .show > .btn-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgba(60, 153, 110, 0.5);
@@ -3319,13 +3319,13 @@ textarea.form-control-lg {
 }
 
 .btn-outline-success {
-  color: #198754;
-  border-color: #198754;
+  color: #4646CD;
+  border-color: #82EB5A;
 }
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #198754;
-  border-color: #198754;
+  background-color: #3CB371;
+  border-color: #3CB371;
 }
 .btn-check:focus + .btn-outline-success, .btn-outline-success:focus {
   box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.5);
@@ -11296,5 +11296,9 @@ textarea.form-control-lg {
 .slick-list img {width: 100%; height: 100%; object-fit: cover;}
 
 .slick-arrow {position: absolute; width: 34px; height: 34px; top: 50%; transform: translateY(-50%); z-index: 100; border: 0; text-indent: -99999px;}
-.slick-prev {left: 30px; background: url(../files/icon/arrow_prev_w.png) no-repeat; background-size: contain;}
-.slick-next {right: 30px; background: url(../files/icon/arrow_next_w.png) no-repeat; background-size: contain;}
+.slick-prev {left: 30px; background: url(../images/icon/arrow_prev_w.png) no-repeat; background-size: contain;}
+.slick-next {right: 30px; background: url(../images/icon/arrow_next_w.png) no-repeat; background-size: contain;}
+
+.y_card img {width: 100%; height: 100%; object-fit: cover;}
+.y_card .btn {display: block; width: 100%; margin-top: 10px;}
+.y_card p {margin-bottom: 0;}

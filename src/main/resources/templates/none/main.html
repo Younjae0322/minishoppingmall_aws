@@ -24,10 +24,10 @@
                 <li class="nav-item"><a class="nav-link" href="/user/new">회원가입</a></li>
             </ul>
             <a class="d-flex" href="/signin">
-                <button class="btn btn-outline-dark" type="submit">
+                <button class="btn btn-outline-success" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <span class="badge bg-success bg-gradient text-white ms-1 rounded-pill">0</span>
                 </button>
             </a>
         </div>
@@ -40,7 +40,7 @@
     <div><a href="#"><img src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/ae8f4910-4731-4900-94ed-dafc1fabc8d1.jpg" alt="베이커리"></a></div>
 </div>
 <!-- Header-->
-<!--<header class="bg-dark py-5">
+<!--<header class="bg-success bg-gradient py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">쇼핑몰 프로젝트</h1>
@@ -49,14 +49,74 @@
     </div>
 </header>-->
 <!-- Section-->
+
 <section class="py-5">
+    <div class="container  px-4 px-lg-5 ">
+        <h5 class="text-center pb-3">🔥이달의 HOT ITEM 추천!🔥</h5>
+        <div class="row gx-5 row-cols-3">
+            <!-- 박스하나 -->
+            <div class="col">
+                <div class="card y_card">
+                    <img
+                            src="https://img-cf.kurly.com/cdn-cgi/image/fit=crop,width=360,height=468,quality=85/shop/data/goods/1606281917375l0.jpg"
+                            alt="상품이미지" >
+                    <div class="card-body p-4">
+                        <div>
+                            <!-- Product name-->
+                            <h5>제주감귤</h5>
+                            <!-- Product price-->
+                            <p>16,500원</p>
+                        </div>
+                        <a class="btn btn-outline-success" href="/item/view/6">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 박스하나 -->
+            <div class="col">
+                <div class="card y_card">
+                    <img
+                            src="https://img-cf.kurly.com/cdn-cgi/image/fit=crop,width=360,height=468,quality=85/shop/data/goods/1637927914559l0.jpg"
+                            alt="상품이미지">
+                    <div class="card-body p-4">
+                        <div>
+                            <!-- Product name-->
+                            <h5>다짐육 150g (냉장)</h5>
+                            <!-- Product price-->
+                            <p>11,540원</p>
+                        </div>
+                        <a class="btn btn-outline-success" href="/item/view/6">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 박스하나 -->
+            <div class="col">
+                <div class="card y_card">
+                    <img
+                            src="https://img-cf.kurly.com/cdn-cgi/image/fit=crop,width=360,height=468,quality=85/shop/data/goods/1648206917161l0.jpeg"
+                            alt="상품이미지">
+                    <div class="card-body p-4">
+                        <div>
+                            <!-- Product name-->
+                            <h5>무항생제 1++ 대란 20구</h5>
+                            <!-- Product price-->
+                            <p>16,500원</p>
+                        </div>
+                        <a class="btn btn-outline-success" href="/item/view/6">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-4 px-lg-5 mt-5">
+        <h5 class="text-center  pb-3">flexsh mall의 상품들</h5>
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5" th:each="item : ${itemlist}">
                 <div class="card h-100">
                     <!-- Product image -->
 <!--                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
-                    <img class="card-img-top" th:src="${item.filepath}" alt="..." />
+                    <img class="card-img-top" th:src="@{${item.filepath}}" alt="..." />
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
@@ -69,16 +129,17 @@
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto" th:href="@{/item/view/{id}(id=${item.id})}">자세히 보기</a>
+                            <a class="btn btn-outline-success mt-auto" th:href="@{/item/view/{id}(id=${item.id})}">자세히 보기</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </section>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-success bg-gradient">
     <div class="container"><p class="m-0 text-center text-white">2023 12월 쇼핑몰 프로젝트</p></div>
 </footer>
 <!-- Bootstrap core JS-->

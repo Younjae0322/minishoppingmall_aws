@@ -69,7 +69,7 @@
                         <td th:text="${cart_item.getCount()}">수량</td>
                         <td th:text="${cart_item.getPrice() * cart_item.getCount()}">가격</td>
                         <td th:text="${cart_item.getCreateDate()}">날짜</td>
-                        <td class="btn btn-outline-dark">
+                        <td class="btn btn-outline-success">
                             <a th:href="@{/user/{id}/cart/{cart_itemId}/delete(id=${user.id}, cart_itemId=${cart_item.getId()})}" style="text-decoration: none">삭제</a></td>
                     </tr>
                     <tr th:unless="${cartDto.cartItems != null and cartDto.cartItems.size() > 0}">

@@ -48,7 +48,7 @@ public class Item {
     @Builder.Default
     private List<Cart_item> cart_items = new ArrayList<>();
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     @Builder.Default
     private List<Order_item> order_items = new ArrayList<>();
 

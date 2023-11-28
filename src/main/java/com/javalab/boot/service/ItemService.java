@@ -31,7 +31,7 @@ public class ItemService {
 
         if (file != null) {
             // 파일이 전달된 경우 파일 저장 로직 추가
-            String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+            String projectPath = System.getProperty("user.dir") + "\\files\\";
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
             File saveFile = new File(projectPath, fileName);

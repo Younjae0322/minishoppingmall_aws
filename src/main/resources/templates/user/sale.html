@@ -103,7 +103,7 @@
                         </select>
                     </div>
                     <div class = "col-auto">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        <button class="btn btn-outline-success flex-shrink-0" type="submit">
                             업데이트
                         </button>
                     </div>
@@ -115,12 +115,12 @@
                         </select>
                     </div>
                     <div class = "col-auto" style="margin-right: 10px">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit" th:formaction="@{/order/refund/{id}(id=${sale.id})}">
+                        <button class="btn btn-outline-success flex-shrink-0" type="submit" th:formaction="@{/order/refund/{id}(id=${sale.id})}">
                             환불 처리
                         </button>
                     </div>
                     <div class = "col-auto">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit" th:formaction="@{/order/refundCancle/{id}(id=${sale.id})}">
+                        <button class="btn btn-outline-success flex-shrink-0" type="submit" th:formaction="@{/order/refundCancle/{id}(id=${sale.id})}">
                             환불 거절
                         </button>
                     </div>

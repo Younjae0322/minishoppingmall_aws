@@ -37,7 +37,7 @@ public class ShopController {
 
 
         List<Item> itemList = itemService.itemList();
-
+        log.info("main 메소드 :");
         model.addAttribute("itemlist",itemList);
 
         model.addAttribute("user", principalDetails.getUser());
