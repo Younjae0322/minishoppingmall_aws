@@ -37,6 +37,7 @@ public class ItemController {
     @PostMapping("/item/writting")
     public String itemWritting(ItemDto itemDto, MultipartFile file,
                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
         try {
             if (principalDetails != null && principalDetails.getUser() != null) {
                 if (principalDetails.getUser().getRole().equals(Role.ROLE_ADMIN)) {

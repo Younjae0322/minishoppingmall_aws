@@ -74,7 +74,7 @@ public class ItemService {
     public List<Item> userItemView(UserDto userDto){
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new UserNotFoundException("User not found with username: " + userDto.getId()));
-        log.info("user.getItems() : " + user.getItems());
+
         // User에 연결된 아이템 리스트 반환
         return user.getItems();
     }

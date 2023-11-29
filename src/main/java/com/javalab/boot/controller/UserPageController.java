@@ -56,7 +56,11 @@ public class UserPageController {
     // 매출 정보 페이지
     @GetMapping("/user/{id}/saleinfo")
     public String page(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("user", userPageService.findUser(id));
+        UserDto userDto = userPageService.findUserId(id);
+
+        model.addAttribute("user", userDto);
+        model.addAttribute("itemList", itemService.userItemView(userDto));
+
 
         /*// 주문 현황 데이터를 가져와 모델에 추가합니다.
         List<Object[]> orderStatusChartData = orderService.getTotalAmountByDateRange(LocalDate.now(), LocalDate.now());
@@ -64,7 +68,6 @@ public class UserPageController {
 
         // 오늘 총 주문 금액을 가져와 모델에 추가합니다.
         int todayTotalAmount = orderService.calculateTodayTotalAmount();
-        log.info("totalAmount : " + todayTotalAmount);
         model.addAttribute("todayTotalAmount", todayTotalAmount);
 
         // 오늘 총 주문 수량을 가져와 모델에 추가합니다.

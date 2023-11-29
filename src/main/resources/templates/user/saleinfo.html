@@ -93,31 +93,16 @@
         <table class="p_table">
           <thead>
             <tr>
-              <th>제품번호</th>
+              <th>제품 번호</th>
               <th>이름</th>
-              <th>수량</th>
+              <th>재고 수량</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>RWTL13</td>
-              <td>마르딕 남성 손목시계</td>
-              <td>21개</td>
-            </tr>
-            <tr>
-              <td>ADDW33</td>
-              <td>LG gram 21인치</td>
-              <td>6개</td>
-            </tr>
-            <tr>
-              <td>RWTL13110</td>
-              <td>가열식 가습기</td>
-              <td>10개</td>
-            </tr>
-            <tr>
-              <td>RWTL13</td>
-              <td>마르딕 남성 손목시계</td>
-              <td>21개</td>
+            <tr th:each="item : ${itemList}">
+              <td th:text="${item.id}">제품 번호</td>
+              <td th:text="${item.name}">이름</td>
+              <td th:text="${item.stock}">재고 수량</td>
             </tr>
           </tbody>
         </table>
