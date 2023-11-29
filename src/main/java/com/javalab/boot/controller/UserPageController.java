@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -154,12 +155,16 @@ public class UserPageController {
     public String myOrderPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         // 로그인 User == 접속 User
         if (principalDetails.getUser().getId() == id) {
-            // User의 주문내역을 가져온다.
-            User user = userPageService.findUser(id);
-            List<Order> orderList = user.getOrders();
+            // 내 주문내역 조회
+            List<Order> orderList = orderService.orderList();
+
+            // Filter orders for the specific user
+            orderList = orderList.stream()
+                    .filter(order -> order.getUser().getId() == id)
+                    .collect(Collectors.toList());
 
             model.addAttribute("orderList", orderList);
-            model.addAttribute("user", user);
+            model.addAttribute("user", principalDetails.getUser());
 
             return "/user/order";
         } else {

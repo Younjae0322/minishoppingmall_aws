@@ -13,6 +13,7 @@ import com.javalab.boot.domain.user.UserRepository;
 import com.javalab.boot.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -49,10 +50,16 @@ public class OrderService {
         order.setPrice(order.getTotalPrice());
         orderRepository.save(order);
     }
-
-    // 전체 주문 내역 조회
+    // 정렬방향 asc
+    /*// 전체 주문 내역 조회
     public List<Order> orderList(){
         return orderRepository.findAll();
+    }*/
+
+    // 전체 주문 내역 조회(정렬방향 desc)
+    public List<Order> orderList() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return orderRepository.findAll(sort);
     }
 
     // 특정 주문 조회

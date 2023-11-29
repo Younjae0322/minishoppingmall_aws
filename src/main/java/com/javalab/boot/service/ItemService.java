@@ -9,6 +9,7 @@ import com.javalab.boot.dto.UserDto;
 import com.javalab.boot.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,9 +49,15 @@ public class ItemService {
 
         itemRepository.save(item);
     }
-    // 전체 상품 목록 조회
+    /*// 전체 상품 목록 조회
     public List<Item> itemList(){
         return itemRepository.findAll();
+    }*/
+
+    // 전체 상품 목록 조회
+    public List<Item> itemList() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return itemRepository.findAll(sort);
     }
     // 특정 상품 조회
     public ItemDto itemView(Long id){
