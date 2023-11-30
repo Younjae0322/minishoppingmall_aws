@@ -33,6 +33,16 @@ public class ItemService {
         if (file != null) {
             // 파일이 전달된 경우 파일 저장 로직 추가
             String projectPath = System.getProperty("user.dir") + "\\files\\";
+            /*String projectPath = new File("").getAbsolutePath() + File.separator + "files" + File.separator;*/
+            /*String projectPath = "files" + File.separator;
+            log.info("projectPath : " + projectPath);*/
+
+            // 폴더가 존재하지 않으면 생성
+            /*File directory = new File(projectPath);
+            if (!directory.exists()) {
+                directory.mkdirs();  // 여러 수준의 디렉터리도 생성하려면 mkdirs()를 사용합니다.
+            }
+*/
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
             File saveFile = new File(projectPath, fileName);
