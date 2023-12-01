@@ -35,7 +35,11 @@ public class ItemService {
 
         if (file != null) {
             String projectPath = System.getProperty("user.dir") + File.separator + "files" + File.separator;
-            ;
+            // 폴더가 없을 경우 생성
+            File directory = new File(projectPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
             File saveFile = new File(projectPath, fileName);
