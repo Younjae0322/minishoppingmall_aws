@@ -1,5 +1,6 @@
 package com.javalab.boot.domain.item;
 
+import com.javalab.boot.constant.Category;
 import com.javalab.boot.domain.cart_item.Cart_item;
 import com.javalab.boot.domain.order_item.Order_item;
 import com.javalab.boot.domain.user.User;
@@ -23,6 +24,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; // 아이템 고유번호
 
+    private Category category; //  카테고리
+
     private String name; // 상품이름
 
     private int price; // 가격
@@ -35,9 +38,31 @@ public class Item {
 
     private String text; // 상품설명
 
+    private String delivery; // 배송
+
+    private String seller; // 판매자
+
+    private String packaging; // 포장타입
+
+    private String sales; // 판매단위
+
+    private String weight; // 중량/용량
+
+    private String allergy; // 알레르기정보
+
+    private String expiration; //  유통기한
+
+    private String notification; // 안내사항
+
     private String filename; // 상품 사진 파일이름
 
     private String filepath; // 상품 사진 파일경로
+
+    @ElementCollection // 별도 entity 없이
+    @CollectionTable(name = "item_images", joinColumns = @JoinColumn(name = "item_id"))
+    @Column(name = "image_path")
+    @Builder.Default
+    private List<String> additionalImages = new ArrayList<>(); //추가 이미지 처리
 
     // 판매자랑 연결
     @ManyToOne(fetch = FetchType.LAZY)
@@ -60,17 +85,27 @@ public class Item {
      * Entity -> Dto 변환 메소드
      */
     public static ItemDto fromEntity(Item item) {
+
         ItemDto itemDto = new ItemDto();
         itemDto.setId(item.getId());
+        itemDto.setCategory(item.getCategory());
         itemDto.setName(item.getName());
         itemDto.setPrice(item.getPrice());
         itemDto.setStock(item.getStock());
         itemDto.setSoldout(item.isSoldout());
         itemDto.setCount(item.getCount());
         itemDto.setText(item.getText());
+        itemDto.setDelivery(item.getDelivery());
+        itemDto.setSeller(item.getSeller());
+        itemDto.setPackaging(item.getPackaging());
+        itemDto.setSales(item.getSales());
+        itemDto.setWeight(item.getWeight());
+        itemDto.setAllergy(item.getAllergy());
+        itemDto.setExpiration(item.getExpiration());
+        itemDto.setNotification(item.getNotification());
         itemDto.setFilename(item.getFilename());
         itemDto.setFilepath(item.getFilepath());
-
+        itemDto.setAdditionalImages(item.getAdditionalImages());
         // 판매자의 아이디만을 전달
         itemDto.setUserId(item.getUser().getId());
 

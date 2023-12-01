@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragment/navigation :: head(title)">
+<head th:replace="/fragment/navigation :: head(title)">
 
 <body>
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" th:replace="fragment/navigation :: menu(${user})">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:replace="/fragment/navigation :: menu(${user})">
 
 </nav>
 <!-- Product section-->
@@ -17,8 +17,16 @@
                 <div class="fs-5 mb-5">
                     <span th:text="${item.price} + ' 원'">30,000 원</span>
                 </div>
-                <p class="lead" th:text="'재고 : ' + ${item.stock}">item stock</p>
-                <p class="lead" th:text="${item.text}">item text</p>
+                <p class="lead" th:text="'재고 : ' + ${item.stock}" hidden>item stock</p>
+                <p class="lead" th:text="'상품명 : ' + ${item.text}">item text</p>
+                <p class="lead" th:text="'배송 : ' +${item.delivery}"></p>
+                <p class="lead" th:text="'판매자 : ' +${item.seller}"></p>
+                <p class="lead" th:text="'포장타입 : ' +${item.packaging}"></p>
+                <p class="lead" th:text="'판매단위 : ' +${item.sales}"></p>
+                <p class="lead" th:text="'중량/용량 : ' +${item.weight}"></p>
+                <p class="lead" th:text="'알레르기정보 : ' +${item.allergy}"></p>
+                <p class="lead" th:text="'유통기한 : ' +${item.expiration}"></p>
+                <p class="lead" th:text="'안내사항 : ' +${item.notification}"></p>
 
                 <form sec:authorize="hasRole('ROLE_USER')" th:action="@{/user/{id}/cart/{itemId}(id=${user.id}, itemId=${item.id})}" method="post" class="d-flex">
                     <input class="form-control text-center me-3" id="count" name="count" type="number" value="1"
@@ -36,6 +44,14 @@
                     <a th:href="@{/item/modify/{id}(id=${item.id})} " class="btn btn-dark">수정</a>
                     <a th:href="@{/item/delete(id=${item.id})}" class="btn btn-dark">삭제</a>
                 </div>
+
+                <!-- 추가 이미지 -->
+                <div th:if="${item != null and item.additionalImages != null}">
+                    <div th:each="additionalImage : ${item.additionalImages}">
+                        <img class="card-img-top mb-5 mb-md-0" th:src="@{${additionalImage}}" alt="추가 이미지" />
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

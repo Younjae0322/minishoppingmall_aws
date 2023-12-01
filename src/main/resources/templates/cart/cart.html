@@ -82,8 +82,69 @@
 
 
 
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mt-3">
-                <div class="col">
+            <div class="row row-cols-2 mb-3 text-center mt-3">
+                <!-- 좌측추가 -->
+
+                <div class="col-8 y_userInfo">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 px-4">
+                            <h4 class="my-0 fw-normal">배송지 정보</h4>
+                            <button class="btn btn-outline-primary btn-sm">기존 사용자 정보 가져오기</button>
+                        </div>
+                        <form class="card-body container">
+                            <div class="row">
+                                <label class="form-label col-sm-3" for="name">주문자 이름</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="name" name="name" th:value="${user.name}" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-label col-sm-3" for="phoneNumber">주문자 전화번호</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                            <!-- 주소 -->
+                            <div class="row">
+                                <label class="form-label col-sm-3" for="addr1">주문자 주소</label>
+                                <div class="col-sm-9">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-9">
+                                                <input type="text" id="addr1" name="addr1" th:value="${user.addr1}" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button class="btn btn-primary btn-sm">주소검색</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" id="addr2" name="addr2" th:value="${user.addr2}" class="form-control form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" id="addr3" name="addr3" th:value="${user.addr3}" class="form-control form-control-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- 주소 -->
+
+                            <div class="row">
+                                <label class="form-label col-sm-3" for="floatingTextarea2">요청사항</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- 좌측추가 -->
+
+                <div class="col-4">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
                             <h4 class="my-0 fw-normal">총 결제금액</h4>

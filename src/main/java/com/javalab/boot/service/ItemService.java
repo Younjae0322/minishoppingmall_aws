@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,45 +30,39 @@ public class ItemService {
     private final UserRepository userRepository;
 
     // 상품 등록
-    public void save(ItemDto itemDto, MultipartFile file) throws Exception {
+    public void save(ItemDto itemDto, MultipartFile file, List<MultipartFile> additionalImages) throws Exception {
         Item item = ItemDto.dtoToEntity(itemDto); // ItemDto를 Item 엔터티로 변환
 
         if (file != null) {
-            // 파일이 전달된 경우 파일 저장 로직 추가
             String projectPath = System.getProperty("user.dir") + "\\files\\";
-            /*String projectPath = new File("").getAbsolutePath() + File.separator + "files" + File.separator;*/
-            /*String projectPath = "build" + File.separator + "libs" + File.separator + "files" + File.separator;*/
-            log.info("projectPath: " + projectPath);
-
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
             File saveFile = new File(projectPath, fileName);
             file.transferTo(saveFile);
-            // 카카오 인공지능 제공
-            /*UUID uuid = UUID.randomUUID();
-            String fileName = uuid + "_" + file.getOriginalFilename();
-
-            String savePath = "files/" + fileName;
-            log.info("savePath: " + savePath);
-*/
-
-            // 폴더가 존재하지 않으면 생성
-            /*File directory = new File(projectPath);
-            if (!directory.exists()) {
-                directory.mkdirs();  // 여러 수준의 디렉터리도 생성하려면 mkdirs()를 사용합니다.
-            }*/
-
-            /*File saveFile = new File(savePath);
-            log.info("saveFile : " + saveFile);
-            file.transferTo(saveFile);*/
 
             item.setFilename(fileName);
             item.setFilepath("/files/" + fileName);
         } else {
-            // 파일이 전달되지 않은 경우의 처리
             item.setFilepath("https://dummyimage.com/450x300/dee2e6/6c757d.jpg");
         }
 
+// 추가 이미지 처리
+        List<String> additionalImagePaths = new ArrayList<>();
+        if (additionalImages != null) {
+            for (MultipartFile additionalImage : additionalImages) {
+                // 추가 이미지 파일을 저장하는 로직
+                String projectPath = System.getProperty("user.dir") + "\\files\\";
+                UUID uuid = UUID.randomUUID();
+                String fileName = uuid + "_" + additionalImage.getOriginalFilename();
+                File saveFile = new File(projectPath, fileName);
+
+                additionalImage.transferTo(saveFile);
+                additionalImagePaths.add("/files/" + fileName);
+            }
+        }
+        // 아래 라인을 변경
+        // item.setAdditionalImages(additionalImagePaths);
+        item.setAdditionalImages(additionalImagePaths);
         item.setCount(item.getStock());
         item.setSoldout(true);
 

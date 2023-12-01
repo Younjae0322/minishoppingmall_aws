@@ -10,10 +10,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 /*
@@ -35,14 +35,14 @@ public class ItemController {
 
     // 상품 등록 처리
     @PostMapping("/item/writting")
-    public String itemWritting(ItemDto itemDto, MultipartFile file,
+    public String itemWritting(@ModelAttribute ItemDto itemDto, @RequestParam("file") MultipartFile file, @RequestParam("additionalImagesList") List<MultipartFile> additionalImagesList,
                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         try {
             if (principalDetails != null && principalDetails.getUser() != null) {
                 if (principalDetails.getUser().getRole().equals(Role.ROLE_ADMIN)) {
                     itemDto.setUserId(principalDetails.getUser().getId());
-                    itemService.save(itemDto, file);
+                    itemService.save(itemDto, file , additionalImagesList);
                     return "redirect:/main";
                 } else {
                     // 권한이 없는 사용자의 경우에 대한 처리
