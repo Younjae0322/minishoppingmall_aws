@@ -25,7 +25,7 @@
 
                         <div class="col-12">
                             <label for="name" class="form-label">카테고리</label>
-                            <select name="category" class="form-control">
+                            <select name="category" class="form-select">
                                 <option value="MEAT">육류</option>
                                 <option value="FRUIT">과일</option>
                                 <option value="VEGETABLE">채소</option>
@@ -33,33 +33,33 @@
                         </div>
 
                         <div class="col-12">
-                            <label for="name" class="form-label">상품명</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="상품명을 입력하세요.">
+                            <label for="name" class="form-label">상품명(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="상품명을 입력하세요." required>
                             <div class="invalid-feedback">
                                 Item name is required.
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label for="price" class="form-label">가격</label>
-                            <input type="text" class="form-control" name="price" id="price" placeholder="ex) 30,000">
+                            <label for="price" class="form-label">가격(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" name="price" id="price" placeholder="ex) 30,000" required>
                             <div class="invalid-feedback">
                                 Price is empty.
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label for="stock" class="form-label">재고</label>
-                            <input type="text" class="form-control" id="stock" name="stock" placeholder="ex) 30">
+                            <label for="stock" class="form-label">재고(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" id="stock" name="stock" placeholder="ex) 30" required>
                             <div class="invalid-feedback">
                                 Stock is empty.
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label for="text" class="form-label">상품 상세내용</label>
+                            <label for="text" class="form-label">상품 상세내용(필수입력값입니다.)</label>
                             <input type="text" class="form-control" id="text" name="text"
-                                   placeholder="ex) 테스트 상품입니다.">
+                                   placeholder="ex) 테스트 상품입니다." required>
                             <div class="invalid-feedback">
                                 Text is empty.
                             </div>

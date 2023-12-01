@@ -23,7 +23,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 50px 0;
 }
 
 .y_wrap {display: flex; align-items: center; justify-content: center;}
