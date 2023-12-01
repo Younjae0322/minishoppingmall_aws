@@ -34,12 +34,7 @@ public class ItemService {
         Item item = ItemDto.dtoToEntity(itemDto); // ItemDto를 Item 엔터티로 변환
 
         if (file != null) {
-            String projectPath = System.getProperty("user.dir") + File.separator + "files" + File.separator;
-            // 폴더가 없을 경우 생성
-            File directory = new File(projectPath);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
+            String projectPath = System.getProperty("user.dir") + "\\files\\";
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
             File saveFile = new File(projectPath, fileName);
@@ -56,8 +51,7 @@ public class ItemService {
         if (additionalImages != null) {
             for (MultipartFile additionalImage : additionalImages) {
                 // 추가 이미지 파일을 저장하는 로직
-                String projectPath = System.getProperty("user.dir") + File.separator + "files" + File.separator;
-                ;
+                String projectPath = System.getProperty("user.dir") + "\\files\\";
                 UUID uuid = UUID.randomUUID();
                 String fileName = uuid + "_" + additionalImage.getOriginalFilename();
                 File saveFile = new File(projectPath, fileName);
