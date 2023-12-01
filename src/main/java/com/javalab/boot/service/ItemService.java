@@ -35,6 +35,7 @@ public class ItemService {
 
         if (file != null) {
             String projectPath = System.getProperty("user.dir") + File.separator + "files" + File.separator;
+            log.info("projectPath : " + projectPath);
             File directory = new File(projectPath);
             if (!directory.exists()) {
                 directory.mkdirs();
