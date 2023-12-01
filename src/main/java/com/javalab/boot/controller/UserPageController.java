@@ -82,7 +82,7 @@ public class UserPageController {
     public String userModify(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("user", userPageService.findUser(id));
 
-        return "/user/useredit";
+        return "user/useredit";
     }
 
     // 유저 정보수정 처리
@@ -103,7 +103,7 @@ public class UserPageController {
 
         model.addAttribute("user", userDto);
         model.addAttribute("itemList", itemService.userItemView(userDto));
-        return "/user/myitem";
+        return "user/myitem";
     }
 
     // 내 장바구니 조회
@@ -119,7 +119,7 @@ public class UserPageController {
             model.addAttribute("cartDto", cartDto);
             model.addAttribute("user", userPageService.findUser(id));
 
-            return "/cart/cart";
+            return "cart/cart";
         } else {
             return "redirect:/main";
         }
@@ -169,7 +169,7 @@ public class UserPageController {
             model.addAttribute("orderList", orderList);
             model.addAttribute("user", principalDetails.getUser());
 
-            return "/user/order";
+            return "user/order";
         } else {
             return "redirect:/main";
         }
@@ -216,7 +216,7 @@ public class UserPageController {
             User user = userPageService.findUser(id);
             model.addAttribute("user", user);
 
-            return "/user/cash";
+            return "user/cash";
         } else {
             return "redirect:/main";
         }
@@ -239,7 +239,7 @@ public class UserPageController {
             List<User> userList = userPageService.userList();
             model.addAttribute("user", admin);
             model.addAttribute("userList", userList);
-            return "/user/adminpage";
+            return "user/adminpage";
         } else {
             return "redirect:/main";
         }

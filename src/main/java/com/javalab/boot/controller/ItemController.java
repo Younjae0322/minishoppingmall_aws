@@ -30,7 +30,7 @@ public class ItemController {
     // 상품 등록 페이지
     @GetMapping("/item/write")
     public String itemWriteForm(){
-        return "/user/itemwrite";
+        return "user/itemwrite";
     }
 
     // 상품 등록 처리
@@ -67,14 +67,14 @@ public class ItemController {
         if(principalDetails == null){
             ItemDto itemDto = itemService.itemView(id);
             model.addAttribute("item", itemDto);
-            return "/none/itemview";
+            return "none/itemview";
         }else{
             ItemDto itemDto = itemService.itemView(id);
 
             model.addAttribute("user", principalDetails.getUser());
 
             model.addAttribute("item", itemDto);
-            return "/user/itemview";
+            return "user/itemview";
         }
     }
     // 특정 상품정보 수정
@@ -82,7 +82,7 @@ public class ItemController {
     public String itemModify(@PathVariable("id") Long id, Model model){
         model.addAttribute("item",itemService.itemView(id));
 
-        return "/user/itemmodify";
+        return "user/itemmodify";
     }
 
     // 특정 상품정보 수정처리
