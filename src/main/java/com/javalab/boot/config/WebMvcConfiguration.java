@@ -9,6 +9,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/files/**")
-                .addResourceLocations("file:///D:/iworks/jpa/minishoppingmall/files/");
+                .addResourceLocations("file:///files/");
     }
 }
