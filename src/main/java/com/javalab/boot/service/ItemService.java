@@ -32,14 +32,15 @@ public class ItemService {
     // 상품 등록
     public void save(ItemDto itemDto, MultipartFile file, List<MultipartFile> additionalImages) throws Exception {
         Item item = ItemDto.dtoToEntity(itemDto); // ItemDto를 Item 엔터티로 변환
-         // 폴더가 없을 경우 생성
-        File directory = new File(projectPath);
-        if (!directory.exists()) {
-        directory.mkdirs();
-        }
+         
 
         if (file != null) {
             String projectPath = System.getProperty("user.dir") + "/files";
+            // 폴더가 없을 경우 생성
+            File directory = new File(projectPath);
+            if (!directory.exists()) {
+            directory.mkdirs();
+            }
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
             File saveFile = new File(projectPath, fileName);
