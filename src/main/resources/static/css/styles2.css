@@ -11294,11 +11294,9 @@ textarea.form-control-lg {
 .slick-list > div > div {height: 100%;}
 .slick-list a {display: block; height: 100%;}
 .slick-list img {width: 100%; height: 100%; object-fit: cover;}
-
 .slick-arrow {position: absolute; width: 34px; height: 34px; top: 50%; transform: translateY(-50%); z-index: 100; border: 0; text-indent: -99999px;}
 .slick-prev {left: 30px; background: url(../images/icon/arrow_prev_w.png) no-repeat; background-size: contain;}
 .slick-next {right: 30px; background: url(../images/icon/arrow_next_w.png) no-repeat; background-size: contain;}
-
 .y_card img {width: 100%; height: 100%; object-fit: cover;}
 .y_card .btn {display: block; width: 100%; margin-top: 10px;}
 .y_card p {margin-bottom: 0;}
@@ -11310,3 +11308,10 @@ textarea.form-control-lg {
 .y_userInfo .card-body > .row .container .row:last-of-type {margin-bottom: 0px;}
 .y_userInfo .card-body > .row .container button {width: 100%;}
 .y_userInfo .form-label {text-align: right;}
+.y_detailtext {font-size: 14px;}
+.y_detailtext strong {display: inline-block; width: 120px; color: #666; }
+html, body {height: 100%;}
+.y_expnav_height {height: calc(100% - 86px);}
+.y_expnav_height > .row {height: 100%;}
+.y_card_s_img {height: 290px;}
+.y_card_s_img img {object-fit: cover; width: 100%; height: 100%;}

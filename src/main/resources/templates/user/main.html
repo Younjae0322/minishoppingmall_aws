@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragment/navigation :: head(title)">
 
 <body>
 <!-- Slide-->
-<script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:replace="fragment/navigation :: menu(${user})">
 
 </nav>
 <!-- Slide-->
 <div class="y_slide">
-    <div><a href="#"><img src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/aa8bf126-aa4d-4b1c-82db-a77a21356883.jpg" alt="이벤트"></a></div>
-    <div><a href="#"><img src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/ec06d41b-4dc6-48d3-80c2-70f73dfe43a8.jpg" alt="장바구니"></a></div>
-    <div><a href="#"><img src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/ae8f4910-4731-4900-94ed-dafc1fabc8d1.jpg" alt="베이커리"></a></div>
+    <div><a href="#"><img
+            src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/aa8bf126-aa4d-4b1c-82db-a77a21356883.jpg"
+            alt="이벤트"></a></div>
+    <div><a href="#"><img
+            src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/ec06d41b-4dc6-48d3-80c2-70f73dfe43a8.jpg"
+            alt="장바구니"></a></div>
+    <div><a href="#"><img
+            src="https://product-image.kurly.com/cdn-cgi/image/width=1900,height=370,quality=85/banner/main/pc/img/ae8f4910-4731-4900-94ed-dafc1fabc8d1.jpg"
+            alt="베이커리"></a></div>
 </div>
 <!-- Header-->
 <!-- <header class="bg-success bg-gradient py-5">
@@ -35,9 +43,7 @@
             <!-- 박스하나 -->
             <div class="col">
                 <div class="card y_card">
-                    <img
-                            src="https://img-cf.kurly.com/cdn-cgi/image/fit=crop,width=360,height=468,quality=85/shop/data/goods/1606281917375l0.jpg"
-                            alt="상품이미지" >
+                    <img src="https://img-cf.kurly.com/cdn-cgi/image/fit=crop,width=360,height=468,quality=85/shop/data/goods/1606281917375l0.jpg" alt="상품이미지">
                     <div class="card-body p-4">
                         <div>
                             <!-- Product name-->
@@ -88,12 +94,13 @@
 
     <div class="container px-4 px-lg-5 mt-5">
         <h5 class="text-center  pb-3">Flexsh Mall의 상품들</h5>
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
             <div class="col mb-5" th:each="item : ${itemlist}">
                 <div class="card h-100">
                     <!-- Product image -->
-                    <!--                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
-                   <img class="card-img-top" th:src="@{${item.filepath}}" alt="..." />
+                    <div class="y_card_s_img">
+                        <img class="card-img-top" th:src="@{${item.filepath}}" alt="상품이미지"/>
+                    </div>
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
@@ -107,7 +114,8 @@
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
-                            <a class="btn btn-outline-success mt-auto" th:href="@{/item/view/{id}(id=${item.id})}">자세히 보기</a>
+                            <a class="btn btn-outline-success mt-auto" th:href="@{/item/view/{id}(id=${item.id})}">자세히
+                                보기</a>
                         </div>
                     </div>
                 </div>

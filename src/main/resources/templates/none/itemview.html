@@ -50,24 +50,25 @@
 <!-- Product section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <img class="card-img-top mb-5 mb-md-0" th:src="@{${item.filepath}}}" alt="..." />
-        </div>
-            <div class="col-md-6">
-                <h1 class="display-5 fw-bolder" th:text="${item.name}">item name</h1>
-                <div class="fs-5 mb-5">
-                    <span th:text="${item.price} + ' 원'">30,000 원</span>
+        <div class="row gx-5">
+            <div class="col-4">
+                <img th:src="@{${item.filepath}}" alt="상품이미지" width="100%" height="auto"  />
+            </div>
+            <div class="col-8">
+                <div class="mb-5">
+                    <h3 th:text="${item.name}">item name</h3>
+                    <strong th:text="${item.price} + ' 원'">30,000 원</strong>
                 </div>
-                <p class="lead" th:text="${item.text}">item text</p>
+                <p th:text="${item.text}">item text</p>
 
                 <a class="d-flex" href="/signin">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
+                           style="max-width: 3rem" />
                     <button class="btn btn-outline-success flex-shrink-0" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
                     </button>
                 </a>
-
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 로컬 버전
         registry.addResourceHandler("/files/**")
-                .addResourceLocations("file:///D:/iworks/jpa/minishoppingmall/files/");
+                .addResourceLocations("file:///D://utility/iworks/minishoppingmall/files/");
     }
 
     // 클라우드 타입 버전

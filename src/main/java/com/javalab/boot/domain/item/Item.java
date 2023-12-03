@@ -69,7 +69,7 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     @Builder.Default
     private List<Cart_item> cart_items = new ArrayList<>();
 

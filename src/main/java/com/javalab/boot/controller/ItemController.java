@@ -5,6 +5,7 @@ import com.javalab.boot.constant.Role;
 import com.javalab.boot.domain.item.Item;
 import com.javalab.boot.dto.ItemDto;
 import com.javalab.boot.service.ItemService;
+import com.javalab.boot.service.UserPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,11 +26,14 @@ import java.util.List;
 @Log4j2
 public class ItemController {
     private final ItemService itemService;
+    private final UserPageService userPageService;
 
 
     // 상품 등록 페이지
     @GetMapping("/item/write")
-    public String itemWriteForm(){
+    public String itemWriteForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        int id = principalDetails.getUser().getId();
+        model.addAttribute("user", userPageService.findUser(id));
         return "user/itemwrite";
     }
 

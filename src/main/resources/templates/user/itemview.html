@@ -9,25 +9,33 @@
 </nav>
 <!-- Product section-->
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="@{${item.filepath}}" alt="..." /></div>
-            <div class="col-md-6">
-                <h1 class="display-5 fw-bolder" th:text="${item.name}">item name</h1>
-                <div class="fs-5 mb-5">
-                    <span th:text="${item.price} + ' 원'">30,000 원</span>
+    <div class="container px-5">
+        <div class="row gx-5 mb-5">
+            <div class="col-4">
+                <img th:src="@{${item.filepath}}" alt="상품이미지" width="100%" height="auto"  />
+            </div>
+            <div class="col-8">
+                <div class="mb-3 d-flex justify-content-between">
+                    <div>
+                        <h3 th:text="${item.name}">item name</h3>
+                        <strong th:text="${item.price} + ' 원'">30,000 원</strong>
+                    </div>
+                    <div class="d-flex align-content-start align-items-start" sec:authorize="hasRole('ROLE_ADMIN')" th:if="${user.id == item.userId}">
+                        <a class="btn btn-sm btn-outline-success mx-2" th:href="@{/item/modify/{id}(id=${item.id})}">수정</a>
+                        <a class="btn btn-sm btn-outline-success" th:href="@{/item/delete(id=${item.id})}">삭제</a>
+                    </div>
                 </div>
-                <p class="lead" th:text="'재고 : ' + ${item.stock}" hidden>item stock</p>
-                <p class="lead" th:text="'상품명 : ' + ${item.text}">item text</p>
-                <p class="lead" th:text="'배송 : ' +${item.delivery}"></p>
-                <p class="lead" th:text="'판매자 : ' +${item.seller}"></p>
-                <p class="lead" th:text="'포장타입 : ' +${item.packaging}"></p>
-                <p class="lead" th:text="'판매단위 : ' +${item.sales}"></p>
-                <p class="lead" th:text="'중량/용량 : ' +${item.weight}"></p>
-                <p class="lead" th:text="'알레르기정보 : ' +${item.allergy}"></p>
-                <p class="lead" th:text="'유통기한 : ' +${item.expiration}"></p>
-                <p class="lead" th:text="'안내사항 : ' +${item.notification}"></p>
-
+                <div class="mb-3">
+                    <p class="y_detailtext"><strong>상품명</strong><span th:text="${item.text}"></span></p>
+                    <p class="y_detailtext"><strong>배송</strong><span th:text="${item.delivery}"></span></p>
+                    <p class="y_detailtext"><strong>판매자</strong><span th:text="${item.seller}"></span></p>
+                    <p class="y_detailtext"><strong>포장타입</strong><span th:text="${item.packaging}"></span></p>
+                    <p class="y_detailtext"><strong>판매단위</strong><span th:text="${item.sales}"></span></p>
+                    <p class="y_detailtext"><strong>중량/용량</strong><span th:text="${item.weight}"></span></p>
+                    <p class="y_detailtext"><strong>알레르기정보</strong><span th:text="${item.allergy}"></span></p>
+                    <p class="y_detailtext"><strong>유통기한</strong><span th:text="${item.expiration}"></span></p>
+                    <p class="y_detailtext"><strong>안내사항</strong><span th:text="${item.notification}"></span></p>
+                </div>
                 <form sec:authorize="hasRole('ROLE_USER')" th:action="@{/user/{id}/cart/{itemId}(id=${user.id}, itemId=${item.id})}" method="post" class="d-flex">
                     <input class="form-control text-center me-3" id="count" name="count" type="number" value="1"
                            style="max-width: 3rem"/>
@@ -36,22 +44,16 @@
                         Add to cart
                     </button>
                 </form>
-
-                <p></p>
-                <p></p>
-                <p></p>
-                <div class="footer" sec:authorize="hasRole('ROLE_ADMIN')" th:if="${user.id == item.userId}">
-                    <a th:href="@{/item/modify/{id}(id=${item.id})} " class="btn btn-dark">수정</a>
-                    <a th:href="@{/item/delete(id=${item.id})}" class="btn btn-dark">삭제</a>
-                </div>
-
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <!-- 추가 이미지 -->
                 <div th:if="${item != null and item.additionalImages != null}">
                     <div th:each="additionalImage : ${item.additionalImages}">
-                        <img class="card-img-top mb-5 mb-md-0" th:src="@{${additionalImage}}" alt="추가 이미지" />
+                        <img th:src="@{${additionalImage}}" alt="추가 이미지"  width="100%" height="auto"  />
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
