@@ -71,10 +71,12 @@
                             <td th:text="${users.getUsername()}">username</td>
                             <td th:text="${users.getRole()}">role</td>
                             <td>
-                                <select name="role">
-                                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                                    <option value="ROLE_USER">ROLE_USER</option>
-                                </select>
+                                <label>
+                                    <select name="role">
+                                        <option value="ROLE_USER">ROLE_USER</option>
+                                        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                                    </select>
+                                </label>
                             </td>
                             <td th:text="${users.getEmail()}">email</td>
                             <td th:text="${users.getMoney()}">money</td>

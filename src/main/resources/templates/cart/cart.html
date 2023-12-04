@@ -91,7 +91,7 @@
                             <h4 class="my-0 fw-normal">배송지 정보</h4>
                             <button class="btn btn-outline-primary btn-sm">기존 사용자 정보 가져오기</button>
                         </div>
-                        <form class="card-body container">
+                        <form class="card-body container" th:action="@{/user/{id}/cart/checkout(id=${user.getId()})}" method="post" th:object="${requestDto}">
                             <div class="row">
                                 <label class="form-label col-sm-3" for="name">주문자 이름</label>
                                 <div class="col-sm-9">
@@ -134,10 +134,13 @@
                             <!-- 주소 -->
 
                             <div class="row">
-                                <label class="form-label col-sm-3" for="floatingTextarea2">요청사항</label>
+                                <label class="form-label col-sm-3" for="request">요청사항</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <textarea class="form-control" id="request" name="request" style="height: 100px"></textarea>
                                 </div>
+                            </div>
+                            <div class="row px-2" >
+                                <button type="submit" class="w-100 btn btn-lg btn-outline-primary">구매하기</button>
                             </div>
                         </form>
                     </div>
@@ -149,12 +152,11 @@
                         <div class="card-header py-3">
                             <h4 class="my-0 fw-normal">총 결제금액</h4>
                         </div>
-                        <form class="card-body" th:action="@{/user/{id}/cart/checkout(id=${user.getId()})}" method="post">
+                        <form class="card-body">
                             <h1 class="card-title pricing-card-title" th:text="${cartDto.totalPrice} + '₩'">$0</h1>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>잘못 담은 물건이 있는지 확인해보세요!</li>
                             </ul>
-                            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">구매하기</button>
                         </form>
                     </div>
                 </div>

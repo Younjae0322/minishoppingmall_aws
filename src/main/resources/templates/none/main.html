@@ -10,27 +10,21 @@
 <!-- Navigation-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
+    <div class="container px-4 px-lg-5 d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="/">
             <img src="/assets/flexshmall.png" alt="flexshmall" style="width:60px">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-            </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" href="/user/login">로그인</a></li>
                 <li class="nav-item"><a class="nav-link" href="/user/new">회원가입</a></li>
             </ul>
-            <a class="d-flex" href="/signin">
+            <a class="d-flex" href="/user/login">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
                     <span class="badge bg-success bg-gradient text-white ms-1 rounded-pill">0</span>
                 </button>
             </a>
-        </div>
     </div>
 </nav>
 <!-- Slide-->

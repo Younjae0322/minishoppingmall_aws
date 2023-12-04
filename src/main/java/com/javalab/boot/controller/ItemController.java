@@ -67,7 +67,7 @@ public class ItemController {
     @GetMapping("/item/view/{id}")
     public String itemView(@PathVariable Long id, Model model,
                            @AuthenticationPrincipal PrincipalDetails principalDetails){
-        log.info("principal : " + principalDetails.getUser().getId());
+
         if(principalDetails == null){
             ItemDto itemDto = itemService.itemView(id);
             model.addAttribute("item", itemDto);
@@ -91,9 +91,10 @@ public class ItemController {
 
     // 특정 상품정보 수정처리
     @PostMapping("/item/update/{id}")
-    public String itemUpdate(@PathVariable("id") Long id, Item item, MultipartFile file)
+    public String itemUpdate(@PathVariable("id") Long id, ItemDto itemDto, @RequestParam("file") MultipartFile file,
+                             @RequestParam("additionalImagesList") List<MultipartFile> additionalImagesList)
             throws Exception{
-        itemService.itemModify(item,id,file);
+        itemService.itemModify(itemDto,id,file, additionalImagesList);
 
         return "redirect:/main";
     }
@@ -101,9 +102,7 @@ public class ItemController {
     // 특정 상품 삭제
     @GetMapping("/item/delete")
     public String itemDelete(Long id){
-
         itemService.itemDelete(id);
-
         return "redirect:/main";
     }
 }

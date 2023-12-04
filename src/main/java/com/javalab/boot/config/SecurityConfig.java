@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 컨트롤러의 이미지 제공 매소드는 누구나 호출 가능
                 .mvcMatchers("/view/**").permitAll()
                 // 로그인, 회원가입 메소드는 누구나 호출 가능
-                .mvcMatchers("/user/**","/mail/**").permitAll()
+                .mvcMatchers("/user/**","/mail/**","/item/**").permitAll()
                 // 게시판은 USER/ADMIN 호출(사용) 가능
                 //.mvcMatchers("/board/**").hasAnyRole("USER", "ADMIN")
                 // 상품 주문 관련 기능은 USER/ADMIN 호출 가능

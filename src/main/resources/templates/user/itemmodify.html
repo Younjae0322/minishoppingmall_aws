@@ -23,8 +23,17 @@
                 <form th:action="@{/item/update/{id}(id=${item.id})}" method="post" enctype="multipart/form-data">
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="name" class="form-label">상품명</label>
-                            <input type="text" class="form-control" id="name" name="name" th:value="${item.name}">
+                            <label for="name" class="form-label">카테고리</label>
+                            <select name="category" class="form-select">
+                                <option value="MEAT">육류</option>
+                                <option value="FRUIT">과일</option>
+                                <option value="VEGETABLE">채소</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="name" class="form-label">상품명(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" id="name" name="name" th:value="${item.name}" required>
                             <div class="invalid-feedback">
                                 Item name is required.
                             </div>
@@ -32,24 +41,96 @@
 
 
                         <div class="col-12">
-                            <label for="price" class="form-label">가격</label>
-                            <input type="text" class="form-control" name="price" id="price" th:value="${item.price}">
+                            <label for="price" class="form-label">가격(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" name="price" id="price" th:value="${item.price}" required>
                             <div class="invalid-feedback">
                                 Price is empty.
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label for="stock" class="form-label">재고</label>
-                            <input type="text" class="form-control" id="stock" name="stock" th:value="${item.stock}">
+                            <label for="stock" class="form-label">재고(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" id="stock" name="stock" th:value="${item.stock}" required>
                             <div class="invalid-feedback">
                                 Stock is empty.
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <label for="text" class="form-label">상품 상세내용</label>
-                            <input type="text" class="form-control" id="text" name="text" th:value="${item.text}">
+                            <label for="text" class="form-label">상품 상세내용(필수입력값입니다.)</label>
+                            <input type="text" class="form-control" id="text" name="text" th:value="${item.text}" required>
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">배송</label>
+                            <input type="text" class="form-control" id="delivery" name="delivery"
+                                   th:value="${item.delivery}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">판매자</label>
+                            <input type="text" class="form-control" id="seller" name="seller"
+                                   th:value="${item.seller}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">포장타입</label>
+                            <input type="text" class="form-control" id="packaging" name="packaging"
+                                th:value="${item.packaging}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">판매단위</label>
+                            <input type="text" class="form-control" id="sales" name="sales"
+                                   th:value="${item.sales}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">중량/용량</label>
+                            <input type="text" class="form-control" id="weight" name="weight"
+                                   th:value="${item.weight}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">알레르기정보</label>
+                            <input type="text" class="form-control" id="allergy" name="allergy"
+                                   th:value="${item.allergy}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">유통기한</label>
+                            <input type="text" class="form-control" id="expiration" name="expiration"
+                                   th:value="${item.expiration}">
+                            <div class="invalid-feedback">
+                                Text is empty.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="text" class="form-label">안내사항</label>
+                            <input type="text" class="form-control" id="notification" name="notification"
+                                   th:value="${item.notification}">
                             <div class="invalid-feedback">
                                 Text is empty.
                             </div>
@@ -60,11 +141,16 @@
                             <input type="file" class="form-control" id="file" name="file">
                         </div>
 
+                        <div class="col-12">
+                            <label class="form-label" for="text">추가 이미지 1</label>
+                            <input type="file" class="form-control" name="additionalImagesList" multiple>
+                        </div>
                     </div>
 
                     <hr class="my-4">
                     <button class="w-100 btn btn-dark btn-lg mb-3" type="submit">상품 등록</button>
                     <!--                    <button class="w-100 btn btn-secondary btn-lg" th:href="@{memberlist}">목록으로</button>-->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </form>
             </div>
         </div>

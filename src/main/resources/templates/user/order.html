@@ -56,6 +56,9 @@
                     <span class="badge bg-danger" th:text="${order.status} + '대기'" th:if="${order.status == '환불'}">주문 완료</span>
                     <span class="badge bg-danger" th:text="${order.status}" th:if="${order.status == '환불 완료'}">주문 완료</span>
                 </h4>
+                    <span th:text="'주문자명 : ' + ${requestDto.name}"></span>
+                    <span th:text="'주문자 주소 : ' + ${requestDto.address}"></span>
+                    <span th:text="'요청 사항 : ' + ${requestDto.request}"></span>
                 <table class="table">
                     <thead class="bg-light">
                     <tr>

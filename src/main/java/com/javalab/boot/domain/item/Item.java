@@ -113,4 +113,24 @@ public class Item {
 
         return itemDto;
     }
+
+    // Item 수정 메소드
+    public void updateItem(Item newItem) {
+        this.category = newItem.getCategory();
+        this.name = newItem.getName();
+        this.price = newItem.getPrice();
+        this.stock = newItem.getStock();
+        this.text = newItem.getText();
+        this.delivery = newItem.getDelivery();
+        this.seller = newItem.getSeller();
+        this.packaging = newItem.getPackaging();
+        this.sales = newItem.getSales();
+        this.weight = newItem.getWeight();
+        this.allergy = newItem.getAllergy();
+        this.expiration = newItem.getExpiration();
+        this.notification = newItem.getNotification();
+        this.filename = newItem.getFilename();
+        this.filepath = newItem.getFilepath();
+        this.additionalImages = newItem.getAdditionalImages();
+    }
 }

@@ -7,19 +7,18 @@ import com.javalab.boot.domain.order.Order;
 import com.javalab.boot.domain.order_item.Order_item;
 import com.javalab.boot.domain.user.User;
 import com.javalab.boot.dto.CartDto;
+import com.javalab.boot.dto.RequestDto;
 import com.javalab.boot.dto.UserDto;
 import com.javalab.boot.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,12 +30,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Log4j2
 public class UserPageController {
+
     private final UserPageService userPageService;
     private final AuthService authService;
     private final CartService cartService;
     private final ItemService itemService;
     private final OrderService orderService;
     private final MailService mailService;
+    // 전역 변수
+    private final RequestDto requestDto2;
 
 
 
@@ -146,16 +148,21 @@ public class UserPageController {
 
     // 결제 페이지
     @PostMapping("/user/{id}/cart/checkout")
-    public String myCartPayment(@PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public String myCartPayment(@PathVariable("id") Integer id,
+                                @ModelAttribute RequestDto requestDto,
+                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
         userPageService.updatePrincipalDetails(id, principalDetails);
         cartService.cartPaymentAndCartDelete(id); // 결제,장바구니 삭제처리
+        // 아래 requestDto는 지역변수 이 메소드 안에서만 사용.
+        log.info("requestDto : " + requestDto);
+        requestDto2.updateRequestDto(requestDto);
         return "redirect:/main";
     }
 
     // 내 주문내역 조회
-    @Transactional
     @GetMapping("/user/{id}/order")
     public String myOrderPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        log.info("request123 : " + requestDto2);
         // 로그인 User == 접속 User
         if (principalDetails.getUser().getId() == id) {
             // 내 주문내역 조회
@@ -168,6 +175,8 @@ public class UserPageController {
 
             model.addAttribute("orderList", orderList);
             model.addAttribute("user", principalDetails.getUser());
+            model.addAttribute("requestDto", requestDto2);
+
 
             return "user/order";
         } else {

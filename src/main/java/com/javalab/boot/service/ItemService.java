@@ -103,24 +103,71 @@ public class ItemService {
         return user.getItems();
     }
     // 특정 상품 수정
-    public void itemModify(Item item, Long id, MultipartFile file)throws Exception{
-        String projectPath = System.getProperty("user.dir") + "\\files\\";
+    public void itemModify(ItemDto itemDto, Long id, MultipartFile file, List<MultipartFile> additionalImages)throws Exception{
+        // 영속화 상태 아이템정보 가져오기
+        Item existItem = itemRepository.findItemById(id);
+        // 기존 이미지 파일 정보를 유지
+        String existFileName = existItem.getFilename();
+        String existFilePath = existItem.getFilepath();
+
+        // 새로운 아이템 정보 엔티티 생성
+        Item modifyItem = ItemDto.dtoToEntity(itemDto);
+
+        // 새로운 이미지 파일이 전송 될 경우에만 처리
+        if (file != null) {
+        String projectPath = System.getProperty("user.dir") + File.separator + "files" + File.separator;
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename();
         File saveFile = new File(projectPath,fileName);
         file.transferTo(saveFile);
 
-        Item tempItem = itemRepository.findItemById(id);
-        tempItem.setName(item.getName());
-        tempItem.setPrice(item.getPrice());
-        tempItem.setStock(item.getStock());
-        //tempItem.setSoldout(item.isSoldout());
-        //tempItem.setCount(item.getCount());
-        tempItem.setText(item.getText());
-        tempItem.setFilename(fileName);
-        tempItem.setFilepath("/files/" + fileName);
+        modifyItem.setFilename(fileName);
+        modifyItem.setFilepath("/files/" + fileName);
+        } else {
+            // 이미지 파일이 전송되지 않은 경우 기존 이미지 파일 정보를 사용
+            modifyItem.setFilename(existFileName);
+            modifyItem.setFilepath(existFilePath);
+        }
+        // 추가 이미지 처리
+        List<String> additionalImagePaths = new ArrayList<>();
+        if (additionalImages != null) {
+            for (MultipartFile additionalImage : additionalImages) {
+                // 추가 이미지 파일을 저장하는 로직
+                String projectPath = System.getProperty("user.dir") + File.separator + "files" + File.separator;
+                UUID uuid = UUID.randomUUID();
+                String fileName = uuid + "_" + additionalImage.getOriginalFilename();
+                File saveFile = new File(projectPath, fileName);
 
-        itemRepository.save(tempItem);
+                additionalImage.transferTo(saveFile);
+                additionalImagePaths.add("/files/" + fileName);
+            }
+        }
+        // 기존의 추가 이미지 파일 삭제
+        deleteAdditionalImages(existItem.getAdditionalImages());
+        // 새로운 추가 이미지로 업데이트
+        modifyItem.setAdditionalImages(additionalImagePaths);
+
+        // 기존 상품 정보에 새로운 상품 정보 업데이트
+        existItem.updateItem(modifyItem);
+
+
+        itemRepository.save(existItem);
+    }
+
+
+    // 기존 추가 이미지 파일 삭제 메소드
+    private void deleteAdditionalImages(List<String> additionalImages) {
+        if (additionalImages != null) {
+            for (String imagePath : additionalImages) {
+                String projectPath = System.getProperty("user.dir");
+                String filePath = projectPath + File.separator + imagePath.replace("/files/", "");
+                File file = new File(filePath);
+
+                if (file.exists()) {
+                    file.delete();
+                }
+            }
+        }
     }
 
     // 특정 상품 삭제
