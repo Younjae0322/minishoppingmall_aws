@@ -162,7 +162,7 @@ public class UserPageController {
     // 내 주문내역 조회
     @GetMapping("/user/{id}/order")
     public String myOrderPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        log.info("request123 : " + requestDto2);
+
         // 로그인 User == 접속 User
         if (principalDetails.getUser().getId() == id) {
             // 내 주문내역 조회

@@ -12,12 +12,10 @@ import org.springframework.stereotype.Component;
 public class RequestDto {
     private String name;
     private String phoneNumber;
-
     private String addr1; // 우편번호
     private String addr2;
     private String addr3;
     private String address;
-
     private String request; // 요청사항
 
     public void updateRequestDto(RequestDto requestDto){
