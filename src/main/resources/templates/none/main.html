@@ -104,14 +104,14 @@
     </div>
 
     <div class="container px-4 px-lg-5 mt-5">
-        <h5 class="text-center  pb-3">flexsh mall의 상품들</h5>
-    <div class="container px-4 px-lg-5 mt-5">
+        <h5 class="text-center  pb-3">Flexsh Mall의 상품들</h5>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
             <div class="col mb-5" th:each="item : ${itemlist}">
                 <div class="card h-100">
                     <!-- Product image -->
-<!--                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />-->
-                    <img class="card-img-top" th:src="@{${item.filepath}}" alt="..." />
+                    <div class="y_card_s_img">
+                        <img class="card-img-top" th:src="@{${item.filepath}}" alt="상품이미지"/>
+                    </div>
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
@@ -130,7 +130,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 <!-- Footer-->
