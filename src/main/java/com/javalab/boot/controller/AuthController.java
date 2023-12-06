@@ -10,6 +10,7 @@ import com.javalab.boot.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,6 +108,23 @@ public class AuthController {
         result.put("result", isUsernameAvailable ? "0" : "1");
         return ResponseEntity.ok(result);
     }
+
+    // 기존 정보 가져오기
+    @GetMapping("/getUserInfo")
+    public ResponseEntity<UserDto> getUserInfo(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        User user = principalDetails.getUser();
+
+        // 여기에서 사용자 정보를 DTO로 변환해서 반환하거나 필요한 작업을 수행할 수 있습니다.
+        UserDto userDto = new UserDto();
+        userDto.setName(user.getName());
+        userDto.setPhoneNumber(user.getPhoneNumber());
+        userDto.setAddr1(user.getAddr1());
+        userDto.setAddr2(user.getAddr2());
+        userDto.setAddr3(user.getAddr3());
+
+        return ResponseEntity.ok(userDto);
+    }
+
 /*    @GetMapping("/signin")
     public String SigninForm(){
         return "signin";
