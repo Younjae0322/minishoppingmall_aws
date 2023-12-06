@@ -21,5 +21,4 @@
  2) 크롬 브라우저 Auto Reload 플러그인 설치
 
 
-^^^^
-delivery입니다.
+

@@ -14,19 +14,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
             registry.addResourceHandler("/files/**")
                     .addResourceLocations("file:///D:/utility/iworks/minishoppingmall/files/");
         }*/
-    @Override
+    /*@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 학원
         // 로컬 버전
         registry.addResourceHandler("/files/**")
                 .addResourceLocations("file:///D:/iworks/jpa/minishoppingmall/files/");
-    }
+    }*/
 
     // 클라우드 타입 버전
- /*   @Override
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/files/**")
                 .addResourceLocations("file:///app/files/");
-    }*/
+    }
 }
 
