@@ -22,6 +22,10 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 주석처리
+ */
+
 @Service
 @Transactional
 @RequiredArgsConstructor
